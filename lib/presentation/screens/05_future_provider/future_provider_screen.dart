@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../providers/future_providers.dart';
 
 class FutureProviderScreen extends ConsumerWidget {
@@ -21,9 +20,25 @@ class FutureProviderScreen extends ConsumerWidget {
           error: (error, stackTrace) => Text('Error: $error'),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.refresh),
-        onPressed: () {},
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: 'next',
+            onPressed: () {
+              ref.read(pokemonIdProvider.notifier).nextPokemon();
+            },
+            child: const Icon(Icons.add),
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: 'previous',
+            onPressed: () {
+              ref.read(pokemonIdProvider.notifier).previousPokemon();
+            },
+            child: const Icon(Icons.minimize_outlined),
+          ),
+        ],
       ),
     );
   }
