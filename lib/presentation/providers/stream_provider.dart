@@ -6,7 +6,7 @@ part 'stream_provider.g.dart';
 @Riverpod(keepAlive: true)
 Stream<List<String>> userInChat(UserInChatRef ref) async* {
   final names = <String>[];
-  // yield names;
+  yield names;
 
   await for (final name in RandomGenerator.randomNameStream()) {
     names.add(name);
